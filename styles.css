@@ -1,0 +1,75 @@
+body{
+  background-color: #DBECF5;
+  /*-webkit-transition: all 1s ease-out;*/
+  color: #345C82;
+  width: 100%;
+}
+
+h1{
+  padding-left: 2px;
+  font-weight: bold;
+}
+
+ul li{
+  list-style: none;
+}
+
+ul{
+  padding: 0; 
+}
+
+.list-container{
+  margin: 0 0.25em;
+}
+.list-item-remove{
+  position: relative;
+  width: 2em;
+  height: 2.4em;
+  text-align: center;
+  padding: 9px;
+  margin-bottom: 67px;
+  left: -4px;
+}
+
+li:first-of-type input{
+  -webkit-border-radius: 4px 4px 0 0;
+}
+li:last-of-type input{
+  -webkit-border-radius: 0 0 4px 4px;
+}
+
+a{
+  color: rgba(199,221,249,0.5);
+}
+
+input{
+  border: none;
+  padding: .5em .8em;
+  box-sizing: border-box;
+  width: 90%;
+  -webkit-border-radius: 0px;
+}
+
+#new-message{
+ -webkit-border-radius: 4px; 
+}
+
+/* iPhone 6+ */
+@media only screen 
+  and (min-device-width: 414px) 
+  and (max-device-width: 736px) 
+  and (-webkit-min-device-pixel-ratio: 3) { 
+    body{
+      font-size: 1.5em;
+    }
+}
+
+
+input:required,
+textarea:required {
+  border-color: red !important;
+}
+input:required + label {
+  color: red;
+}
+

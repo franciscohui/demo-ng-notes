@@ -1,0 +1,69 @@
+<html ng-app="notes-app">
+  <head>
+    <title>Notes</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
+  </head>
+
+  <body ng-controller="MainCtrl">
+    <div class="list-container">
+
+      <div ng-hide="authData">
+        <h1>Sign In</h1>
+        <input type="email" ng-model="email" placeholder="Email">
+        <input type="password" ng-model="password" placeholder="Password">
+        <button class="btn btn-default" ng-click="signInUser()">Sign In</button>
+        <p ng-if="message">Message: <strong>{{ message }}</strong></p>
+        <p ng-if="error">Error: <strong>{{ error.code }}</strong></p>
+      </div> <!-- ng-hide="authData" -->
+
+
+      <!-- LOGGED IN -->
+      <div ng-show="authData">
+        <!-- LIST OF MESSSAGES -->
+        <ul class="list">
+          <h1>Notes for {{ authData.password.email }}
+            <a href="" class="btn btn-link pull-right" ng-click="auth.$unauth()">Logout</a>
+          </h1>
+          <li class="list-item" ng-repeat="message in messages">
+            <!-- edit a message -->
+            <input ng-model="message.text" ng-change="messages.$save(message)" />
+            <!-- delete a message -->
+
+            <a class="list-item-remove" href="" ng-click="messages.$remove(message)"><i class="fa fa-times"></i></a>
+          </li>
+        </ul>
+
+        <!-- ADD NEW MESSAGE TO FIREBASE -->
+        <form ng-submit="addMessage(newMessageText)">
+          <input id="new-message" ng-model="newMessageText" placeholder="Add a note"/>
+        </form>
+      </div> <!-- ng-show="authData" -->
+    </div> <!-- .list-container -->
+
+    <!-- SCRIPTS -->  
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+    <script src="app.js"></script>
+    <!-- Firebase -->
+    <script src="https://cdn.firebase.com/js/client/2.2.4/firebase.js"></script>
+    <script src="https://cdn.firebase.com/libs/angularfire/1.1.2/angularfire.min.js"></script><!-- AngularFire -->
+    <!-- bootstrap & jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  </body>
+
+</html>
+
+<!-- 
+2015.09.02
+7:00-8:30am (1.5 hrs)
+Made the app responsive to mobile.
+Fixed styles for iOS input fields to remove rounded corners
+ -->
